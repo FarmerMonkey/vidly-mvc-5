@@ -20,6 +20,10 @@ namespace Vidly.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Customer> Customers { get; set; }
+
+        //DB Set for Movies will go here later
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -30,6 +34,5 @@ namespace Vidly.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Vidly.Models.Customer> Customers { get; set; }
     }
 }
