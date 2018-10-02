@@ -188,6 +188,14 @@
     <Compile Include="Migrations\201810011755258_ApplyAnnotationsToCustomerName.Designer.cs">
       <DependentUpon>201810011755258_ApplyAnnotationsToCustomerName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810021117514_AddNameToMembershipType.cs" />
+    <Compile Include="Migrations\201810021117514_AddNameToMembershipType.Designer.cs">
+      <DependentUpon>201810021117514_AddNameToMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810021119280_AddColConstraintsToMemTypeName.cs" />
+    <Compile Include="Migrations\201810021119280_AddColConstraintsToMemTypeName.Designer.cs">
+      <DependentUpon>201810021119280_AddColConstraintsToMemTypeName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -289,6 +297,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810011755258_ApplyAnnotationsToCustomerName.resx">
       <DependentUpon>201810011755258_ApplyAnnotationsToCustomerName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810021117514_AddNameToMembershipType.resx">
+      <DependentUpon>201810021117514_AddNameToMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810021119280_AddColConstraintsToMemTypeName.resx">
+      <DependentUpon>201810021119280_AddColConstraintsToMemTypeName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
