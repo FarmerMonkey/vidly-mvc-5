@@ -200,9 +200,30 @@
     <Compile Include="Migrations\201810021426248_AddBirthdateToCustomer.Designer.cs">
       <DependentUpon>201810021426248_AddBirthdateToCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810021618368_AddMovieProperties.cs" />
+    <Compile Include="Migrations\201810021618368_AddMovieProperties.Designer.cs">
+      <DependentUpon>201810021618368_AddMovieProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810021628251_CreateGenreFK.cs" />
+    <Compile Include="Migrations\201810021628251_CreateGenreFK.Designer.cs">
+      <DependentUpon>201810021628251_CreateGenreFK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810021632356_PopulateGenre.cs" />
+    <Compile Include="Migrations\201810021632356_PopulateGenre.Designer.cs">
+      <DependentUpon>201810021632356_PopulateGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810021638142_GenreIdColumn.cs" />
+    <Compile Include="Migrations\201810021638142_GenreIdColumn.Designer.cs">
+      <DependentUpon>201810021638142_GenreIdColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810021639222_PopulateGenres2.cs" />
+    <Compile Include="Migrations\201810021639222_PopulateGenres2.Designer.cs">
+      <DependentUpon>201810021639222_PopulateGenres2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -310,6 +331,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810021426248_AddBirthdateToCustomer.resx">
       <DependentUpon>201810021426248_AddBirthdateToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810021618368_AddMovieProperties.resx">
+      <DependentUpon>201810021618368_AddMovieProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810021628251_CreateGenreFK.resx">
+      <DependentUpon>201810021628251_CreateGenreFK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810021632356_PopulateGenre.resx">
+      <DependentUpon>201810021632356_PopulateGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810021638142_GenreIdColumn.resx">
+      <DependentUpon>201810021638142_GenreIdColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810021639222_PopulateGenres2.resx">
+      <DependentUpon>201810021639222_PopulateGenres2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
