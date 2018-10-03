@@ -28,9 +28,12 @@ namespace Vidly.Controllers
             return View(movies);
         }
 
-        public ViewResult Details(int Id)
+        public ActionResult Details(int Id)
         {
             var movie = _context.Movies.Include(c => c.Genre).SingleOrDefault(c => c.Id == Id);
+
+            if (movie == null)
+                return HttpNotFound();
 
             return View(movie);
         }
