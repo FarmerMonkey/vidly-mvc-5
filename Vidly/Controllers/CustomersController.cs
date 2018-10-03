@@ -51,9 +51,22 @@ namespace Vidly.Controllers
 
         [HttpPost] /*Best practice -- never allow write operations to be called w/ HttpGet */
         //public ActionResult Create(NewCustomerViewModel viewModel) -- MVC model binding is smart enough to extract the Customer object from the NewCustomerViewModel object
-        public ActionResult Create(Customer customer)
+        //S4L44 - Changed name from Create to Save, 10/3/18
+        public ActionResult Save(Customer customer)
         {
-            _context.Customers.Add(customer); // this does not write to database, only memory
+            if (customer.Id == 0)
+                _context.Customers.Add(customer);
+            else
+            {
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+                //TryUpdateModel(customerInDb);  //official .NET way, Mosh does not like for security reasons
+                //TryUpdateModel(customerInDb, "", new string[] { "Name", "Email" });  //official .NET workaround, whitelist fields OK to update--drawback=refactoring those string literal names
+                //Alternative:
+                customerInDb.Name = customer.Name;
+                customerInDb.Birthdate = customer.Birthdate;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+            }
             _context.SaveChanges(); // persist changes to database -- context tracks DML type (ins/upd/del) and generates DML statements at runtime
 
             // there is no "Create" view associated with this action, instead, we'll redirect users back to list of customers (index)
