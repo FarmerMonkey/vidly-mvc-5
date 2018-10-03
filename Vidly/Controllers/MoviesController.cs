@@ -16,6 +16,11 @@ namespace Vidly.Controllers
             _context = new ApplicationDbContext();
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         public ViewResult Index()
         {
             var movies = _context.Movies.Include(c => c.Genre).ToList();
