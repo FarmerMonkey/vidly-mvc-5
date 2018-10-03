@@ -37,7 +37,11 @@ namespace Vidly.Controllers
         //public ActionResult Create(NewCustomerViewModel viewModel) -- MVC model binding is smart enough to extract the Customer object from the NewCustomerViewModel object
         public ActionResult Create(Customer customer)
         {
-            return View();
+            _context.Customers.Add(customer); // this does not write to database, only memory
+            _context.SaveChanges(); // persist changes to database -- context tracks DML type (ins/upd/del) and generates DML statements at runtime
+
+            // there is no "Create" view associated with this action, instead, we'll redirect users back to list of customers (index)
+            return RedirectToAction("Index", "Customers");
         }
 
         // GET: Customer
