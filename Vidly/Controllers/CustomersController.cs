@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
+using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
@@ -23,6 +24,18 @@ namespace Vidly.Controllers
         }
 
         public ActionResult New()
+        {
+            var membershipTypes = _context.MembershipTypes.ToList();
+            var viewModel = new NewCustomerViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+            return View(viewModel);
+        }
+
+        [HttpPost] /*Best practice -- never allow write operations to be called w/ HttpGet */
+        //public ActionResult Create(NewCustomerViewModel viewModel) -- MVC model binding is smart enough to extract the Customer object from the NewCustomerViewModel object
+        public ActionResult Create(Customer customer)
         {
             return View();
         }
