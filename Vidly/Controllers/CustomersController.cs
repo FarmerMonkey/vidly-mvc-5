@@ -54,6 +54,17 @@ namespace Vidly.Controllers
         //S4L44 - Changed name from Create to Save, 10/3/18
         public ActionResult Save(Customer customer)
         {
+            //S5L50 -- Checking Model State -- If Model is invalid, bounce back to Customer Form view
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerFormViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+                return View("CustomerForm", viewModel);
+            }
+
             if (customer.Id == 0)
                 _context.Customers.Add(customer);
             else
