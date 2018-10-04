@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
+using System;
 
 namespace Vidly.Controllers
 {
@@ -28,14 +29,63 @@ namespace Vidly.Controllers
             return View(movies);
         }
 
-        public ActionResult Details(int Id)
+        public ActionResult Details(int id)
         {
-            var movie = _context.Movies.Include(c => c.Genre).SingleOrDefault(c => c.Id == Id);
+            var movie = _context.Movies.Include(c => c.Genre).SingleOrDefault(c => c.Id == id);
 
             if (movie == null)
                 return HttpNotFound();
 
             return View(movie);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
+            if (movie == null)
+                return HttpNotFound();
+
+            var genres = _context.Genres.ToList();
+            var viewModel = new MovieFormViewModel
+            {
+                Genres = genres,
+                Movie = movie
+            };
+
+            return View("MovieForm", viewModel);
+        }
+
+        public ActionResult New()
+        {
+            var genres = _context.Genres.ToList();
+            var viewModel = new MovieFormViewModel
+            {
+                Genres = genres
+            };
+            return View("MovieForm", viewModel);
+        }
+
+
+        [HttpPost]
+        public ActionResult Save(Movie movie)
+        {
+            if (movie.Id == 0)
+            {
+                movie.DateAdded = DateTime.Now;
+                _context.Movies.Add(movie);
+            }
+            else
+            {
+                var movieInDb = _context.Movies.Single(c => c.Id == movie.Id);
+                movieInDb.Name = movie.Name;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+                movieInDb.GenreId = movie.GenreId;
+                movieInDb.NumberInStock = movie.NumberInStock;
+            }
+            _context.SaveChanges(); // persist changes to database -- context tracks DML type (ins/upd/del) and generates DML statements at runtime
+
+            // there is no "Create" view associated with this action, instead, we'll redirect users back to list of customers (index)
+            return RedirectToAction("Index", "Movies");
         }
 
         private IEnumerable<Movie> GetMovies()
