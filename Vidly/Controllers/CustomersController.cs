@@ -51,6 +51,7 @@ namespace Vidly.Controllers
         }
 
         [HttpPost] /*Best practice -- never allow write operations to be called w/ HttpGet */
+        [ValidateAntiForgeryToken] // Prevent cross-site scripting attacks
         //public ActionResult Create(NewCustomerViewModel viewModel) -- MVC model binding is smart enough to extract the Customer object from the NewCustomerViewModel object
         //S4L44 - Changed name from Create to Save, 10/3/18
         public ActionResult Save(Customer customer)
