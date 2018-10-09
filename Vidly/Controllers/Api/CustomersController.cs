@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Security.Policy;
 using System.Web.Http;
+using System.Data.Entity;
 using Vidly.Dtos;
 using Vidly.Models;
 
@@ -24,7 +25,12 @@ namespace Vidly.Controllers.Api
         public IHttpActionResult GetCustomers()
         {
             // Map is a reference/delegate
-            return Ok(_context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>));
+            // S7L80 -- Need to eager load Membership Type
+            return Ok(_context.Customers
+                .Include(c => c.MembershipType)
+                .ToList()
+                .Select(Mapper.Map<Customer, CustomerDto>)
+                );
         }
 
         // GET /api/customers/1

@@ -19,6 +19,8 @@ namespace Vidly.Dtos
 
         public byte MembershipTypeId { get; set; }
 
+        public MembershipTypeDto MembershipType { get; set; }
+
         //[Min18YearsIfAMember] - will cause an exception when Min18YearsAMember class tries to cast this to a Customer
         public DateTime? Birthdate { get; set; }
     }
