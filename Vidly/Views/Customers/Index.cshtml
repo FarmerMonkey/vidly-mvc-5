@@ -48,7 +48,12 @@ else
 @section scripts
 {
     <script>
+
+
         $(document).ready(function () {
+
+            $("#customers").DataTable();
+
             $("#customers").on("click", ".js-delete", function () {
                 var button = $(this); //added since $(this) changes inside the success callback function, give a static reference to button
 
