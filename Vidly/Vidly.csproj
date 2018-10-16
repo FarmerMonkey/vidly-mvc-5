@@ -192,7 +192,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
     <Compile Include="Controllers\Api\MoviesController.cs" />
-    <Compile Include="Controllers\Api\NewRentalController.cs" />
+    <Compile Include="Controllers\Api\NewRentalsController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -201,6 +201,7 @@
     <Compile Include="Dtos\GenreDto.cs" />
     <Compile Include="Dtos\MembershipTypeDto.cs" />
     <Compile Include="Dtos\MovieDto.cs" />
+    <Compile Include="Dtos\NewRentalDto.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -261,8 +262,13 @@
     <Compile Include="Migrations\201810152334358_Section8Exercise.Designer.cs">
       <DependentUpon>201810152334358_Section8Exercise.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810161125035_AddRental.cs" />
+    <Compile Include="Migrations\201810161125035_AddRental.Designer.cs">
+      <DependentUpon>201810161125035_AddRental.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -270,6 +276,7 @@
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\Rental.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -565,6 +572,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810152334358_Section8Exercise.resx">
       <DependentUpon>201810152334358_Section8Exercise.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810161125035_AddRental.resx">
+      <DependentUpon>201810161125035_AddRental.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
