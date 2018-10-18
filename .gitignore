@@ -190,3 +190,6 @@ ModelManifest.xml
 /.vs/Vidly/v15/Server/sqlite3
 /.vs/Vidly/DesignTimeBuild/.dtbcache
 /.vs/config/applicationhost.config
+
+# Excluded from public github for security
+AppSettings.config
