@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.ComponentModel.DataAnnotations;
+using Vidly.Models;
 
 namespace Vidly.Dtos
 {
@@ -16,11 +20,11 @@ namespace Vidly.Dtos
 
         public GenreDto Genre { get; set; }
 
-        public DateTime DateAdded { get; set; }
+        public DateTime? DateAdded { get; set; }
 
         public DateTime ReleaseDate { get; set; }
 
-        [Range(1, 20)]
+        [Range(1, 20, ErrorMessage = "Number in Stock must be between 1 and 20.")]
         public byte NumberInStock { get; set; }
     }
 }

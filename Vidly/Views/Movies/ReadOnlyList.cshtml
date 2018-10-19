@@ -6,7 +6,6 @@
 }
 
 <h2>Movies</h2>
-
 <table id="movies" class="table table-bordered table-hover">
     <thead>
         <tr>
@@ -14,13 +13,14 @@
             <th>Genre</th>
         </tr>
     </thead>
-    <tbody>
-    </tbody>
+    <tbody></tbody>
 </table>
+
 @section scripts
 {
     <script>
         $(document).ready(function () {
+
             var table = $("#movies").DataTable({
                 ajax: {
                     url: "/api/movies",
@@ -31,7 +31,7 @@
                         data: "name"
                     },
                     {
-                        data: "genre.name"
+                        data: "genre.name",
                     }
                 ]
             });

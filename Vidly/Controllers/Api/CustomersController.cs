@@ -1,8 +1,12 @@
 ﻿using AutoMapper;
 using System;
-using System.Data.Entity;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Security.Policy;
 using System.Web.Http;
+using System.Data.Entity;
 using Vidly.Dtos;
 using Vidly.Models;
 
@@ -16,21 +20,17 @@ namespace Vidly.Controllers.Api
         {
             _context = new ApplicationDbContext();
         }
-
         // GET /api/customers
-        public IHttpActionResult GetCustomers(string query = null)
+        // ^-- Automatically assigned based on convention of "Get" "Customers"
+        public IHttpActionResult GetCustomers()
         {
-            var customersQuery = _context.Customers
-                .Include(c => c.MembershipType);
-
-            if (!String.IsNullOrWhiteSpace(query))
-                customersQuery = customersQuery.Where(c => c.Name.Contains(query));
-
-            var customerDtos = customersQuery
+            // Map is a reference/delegate
+            // S7L80 -- Need to eager load Membership Type
+            return Ok(_context.Customers
+                .Include(c => c.MembershipType)
                 .ToList()
-                .Select(Mapper.Map<Customer, CustomerDto>);
-            
-            return Ok(customerDtos);    
+                .Select(Mapper.Map<Customer, CustomerDto>)
+                );
         }
 
         // GET /api/customers/1
@@ -45,17 +45,18 @@ namespace Vidly.Controllers.Api
         }
 
         // POST /api/customers
-        [HttpPost]
+        [HttpPost] // Does not automatically use Post based on method name, so use annotation here
         public IHttpActionResult CreateCustomer(CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
-                return BadRequest();
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
 
             var customer = Mapper.Map<CustomerDto, Customer>(customerDto);
             _context.Customers.Add(customer);
             _context.SaveChanges();
 
             customerDto.Id = customer.Id;
+
             return Created(new Uri(Request.RequestUri + "/" + customer.Id), customerDto);
         }
 
@@ -64,14 +65,14 @@ namespace Vidly.Controllers.Api
         public IHttpActionResult UpdateCustomer(int id, CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
-                return BadRequest();
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
 
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customerInDb == null)
                 return NotFound();
 
-            Mapper.Map(customerDto, customerInDb);
+            Mapper.Map(customerDto, customerInDb); //<CustomerDto, Customer> inferred by two variables, so not explicitly needed
 
             _context.SaveChanges();
 

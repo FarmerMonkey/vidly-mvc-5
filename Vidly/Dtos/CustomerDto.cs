@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.ComponentModel.DataAnnotations;
+using Vidly.Models;
 
 namespace Vidly.Dtos
 {
@@ -17,7 +21,7 @@ namespace Vidly.Dtos
 
         public MembershipTypeDto MembershipType { get; set; }
 
-//        [Min18YearsIfAMember]
+        //[Min18YearsIfAMember] - will cause an exception when Min18YearsAMember class tries to cast this to a Customer
         public DateTime? Birthdate { get; set; }
     }
 }
